@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -21,5 +20,5 @@ public class Series {
     @GeneratedValue
     private Long id;
     private String title;
-    private double rating;
+    private String rating;
 }

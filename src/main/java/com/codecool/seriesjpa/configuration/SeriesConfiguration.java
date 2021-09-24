@@ -16,12 +16,12 @@ public class SeriesConfiguration {
         return args ->{
             Series gamesOfThrones = Series.builder()
                     .title("Trónok harca")
-                    .rating(9)
+                    .rating("9.0")
                     .build();
 
             Series dexter = Series.builder()
                     .title("Dexter")
-                    .rating(9.3)
+                    .rating("9.3")
                     .build();
             seriesRepository.saveAll(List.of(gamesOfThrones, dexter));
         };
