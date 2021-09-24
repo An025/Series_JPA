@@ -1,14 +1,9 @@
 package com.codecool.seriesjpa.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -23,4 +18,10 @@ public class Series {
     @Column(nullable = false)
     private String title;
     private String rating;
+
+    @Singular
+    @OneToMany(mappedBy = "series", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @EqualsAndHashCode.Exclude
+    private Set<Season> seasons;
+
 }
