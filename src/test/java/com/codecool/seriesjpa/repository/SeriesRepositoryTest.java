@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -42,6 +43,15 @@ public class SeriesRepositoryTest {
 
         List<Series> seriesList = seriesRepository.findAll();
         assertThat(seriesList).hasSize(1);
+    }
+
+    @Test( expected = DataIntegrityViolationException.class)
+    public void titleShouldBeNotNull(){
+        Series gameOfThrones = Series.builder()
+                .rating("9.0")
+                .build();
+        seriesRepository.save(gameOfThrones);
+
     }
 
 }
